@@ -39,36 +39,17 @@ Each annotation file follows the **COCO format**, including bounding boxes, segm
 ## ⚙️ Installation
 Clone the repository and install the required dependencies:
 
-```bash
-git clone https://github.com/your-username/small-object-detection.git
-cd small-object-detection
-pip install -r requirements.txt
-```
+    git clone https://github.com/your-username/small-object-detection.git
+    cd small-object-detection
+    pip install -r requirements.txt
 
 Or install manually:
 
-```bash
-pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
-pip install detectron2 opencv-python matplotlib tqdm
-```
+    pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+    pip install detectron2 opencv-python matplotlib tqdm
 
 ---
 
-## 🚀 Usage
-
-To train and evaluate the model, simply open and run the notebook:
-
-```bash
-jupyter notebook small-object-detection.ipynb
-```
-
-If you’ve converted the notebook into a Python script, you can also run it directly:
-
-```bash
-python train_detectron2.py
-```
-
----
 
 
 
