@@ -50,9 +50,137 @@ Or install manually:
 
 ---
 
+## 🚀 Usage
+To train and evaluate the model, open the notebook:
 
+    jupyter notebook small-object-detection.ipynb
 
+Or, if converted to a Python script:
 
+    python train_detectron2.py
+
+---
+
+## 🧹 Data Preprocessing
+Before training, the input data is preprocessed to ensure quality and consistency:
+
+### ✅ Dataset Validation
+- Verify image–annotation alignment  
+- Remove empty or corrupted samples  
+
+### ✅ Resizing and Normalization
+- Scale images while maintaining aspect ratio  
+- Normalize pixel intensity for Detectron2’s input format  
+
+### ✅ Annotation Conversion
+- Convert to COCO JSON format  
+- Verify bounding box and category consistency  
+
+---
+
+## 🧠 Model Configuration & Training
+Training is performed using **Detectron2**, a Facebook AI Research (FAIR) framework.
+
+### 🧩 Model Selection
+- Base architecture: `faster_rcnn_R_50_FPN_3x` (ResNet-50 backbone with FPN)  
+- Pretrained weights from COCO used for transfer learning  
+
+### ⚙️ Training Parameters
+- Learning rate: `0.00025`  
+- Batch size: `4`  
+- Iterations: `~5000`  
+- Augmentation: random flips and resizing  
+
+### 📏 Evaluation Metrics
+- mAP (mean Average Precision) across IoU thresholds  
+- Separate evaluation for small, medium, and large objects  
+
+### 💾 Output Checkpoints
+- Model checkpoints saved in `/output` after every epoch  
+- Final model stored as `model_final.pth`  
+
+---
+
+## 📊 Results & Visualization
+After training, performance is analyzed both quantitatively and visually.
+
+### 📈 Evaluation Metrics
+- Example mAP (small objects): ~0.35  
+- Example mAP (medium/large): ~0.60  
+
+### 🖼️ Detection Visualization
+Bounding boxes and labels plotted over sample images.  
+Model predictions compared to ground truth for validation.
+
+Example output visualization:
+
+    from detectron2.utils.visualizer import Visualizer
+    visualizer = Visualizer(image[:, :, ::-1], metadata=metadata)
+    out = visualizer.draw_instance_predictions(outputs["instances"].to("cpu"))
+    plt.imshow(out.get_image()[:, :, ::-1])
+
+---
+
+## 🧪 Troubleshooting
+Common issues and fixes:
+
+### ❌ CUDA Out of Memory
+- Reduce batch size or image resolution  
+
+### ❌ Dataset Registration Error
+- Ensure correct paths and annotation file format in `DatasetCatalog.register()`  
+
+### ❌ Low Detection on Small Objects
+- Use Feature Pyramid Network (FPN)  
+- Apply higher input resolution  
+- Consider multi-scale training  
+
+---
+
+## 🚀 Deployment Options
+You can deploy the trained model using:
+
+### ✅ Local Inference Script
+Run inference on an image locally:
+
+    python inference.py --image path/to/image.jpg --model output/model_final.pth
+
+### ✅ Web or API Deployment
+- Use **Flask** or **FastAPI** for REST inference  
+- Convert to **ONNX** or **TorchScript** for optimized runtime  
+
+---
+
+## 📦 Deliverables
+This repository includes:
+
+- ✅ Jupyter notebook → `small-object-detection.ipynb`  
+- ✅ Model checkpoints → `/output/model_final.pth`  
+- ✅ Visualization samples → `/visuals/`  
+- ✅ Config and training logs → `/configs/`  
+- ✅ Requirements file → `requirements.txt`  
+
+---
+
+## 🏁 Conclusion
+
+### ✅ Objective Achieved
+- Successfully trained a small-object detector using **Detectron2**  
+
+### ✅ Key Features
+- Adaptable to any **COCO-style** dataset  
+- Visual evaluation and **mAP** metrics integrated  
+
+### ✅ Impact
+- Enhances object detection for low-visibility and small-scale targets  
+- Useful for applications in **surveillance**, **remote sensing**, and **medical imaging**  
+
+### ✅ Future Work
+- Experiment with custom backbones (e.g., **Swin Transformer**, **ConvNeXt**)  
+- Explore attention-based architectures for improved small object recall  
+- Optimize inference speed with **quantization** or **pruning**  
+
+---
 
 ## ⚖️ License
 
