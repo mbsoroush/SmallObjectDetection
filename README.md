@@ -24,13 +24,13 @@ This project is dataset-agnostic — any **COCO-style annotated dataset** with s
 
 Example dataset structure:
 
-dataset/
-├── train/
-│ ├── images/
-│ └── annotations.json
-├── val/
-│ ├── images/
-│ └── annotations.json
+    dataset/
+    ├── train/
+    │   ├── images/
+    │   └── annotations.json
+    ├── val/
+    │   ├── images/
+    │   └── annotations.json
 
 Each annotation file follows the **COCO format**, including bounding boxes, segmentation masks, and class labels.
 
