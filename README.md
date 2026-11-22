@@ -1,4 +1,4 @@
-# 📘 Small Object Detection with Detectron2
+# 📘 Small Object Detection 
 
 ![Python](https://img.shields.io/badge/Python-3.10-blue)
 ![Detectron2](https://img.shields.io/badge/Detectron2-0.6+-orange)
